@@ -18,13 +18,13 @@ Basic usage::
 
 	from s3file import s3open
 	
-	f = s3open("http://mybucket.s3.amazonaws.com/")
+	f = s3open("http://mybucket.s3.amazonaws.com/myfile.txt")
 	f.write("Lorem ipsum dolor sit amet...")
 	f.close()
 
 S3 authentication key and secret may be passed into the ``s3open`` method or stored in the `boto config file <http://code.google.com/p/boto/wiki/BotoConfig>`_.::
 
-	f = s3open("http://mybucket.s3.amazonaws.com/", key, secret)
+	f = s3open("http://mybucket.s3.amazonaws.com/myfile.txt", key, secret)
 
 Other parameters to s3open include:
 
