@@ -1,5 +1,3 @@
-from boto.s3.connection import S3Connection
-from boto.s3.key import Key
 from urlparse import urlparse
 import cStringIO
 import mimetypes
@@ -15,6 +13,9 @@ def s3open(*args, **kwargs):
 class S3File(object):
     
     def __init__(self, url, key=None, secret=None, expiration_days=0, private=False, content_type=None):
+        from boto.s3.connection import S3Connection
+        from boto.s3.key import Key
+        
         self.url = urlparse(url)
         self.expiration_days = expiration_days
         self.buffer = cStringIO.StringIO()
