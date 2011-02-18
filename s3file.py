@@ -44,6 +44,8 @@ class S3File(object):
     def _remote_write(self):
         """ Write file contents to S3 from internal buffer.
         """
+        self.truncate(self.tell())
+        
         headers = {
             "x-amz-acl":  "private" if self.private else "public-read"
         }
