@@ -2,13 +2,16 @@ from urlparse import urlparse
 import cStringIO
 import mimetypes
 import os
+import datetime
 
 __version__ = '0.1'
+
 
 def s3open(*args, **kwargs):
     """ Convenience method for creating S3File object.
     """
     return S3File(*args, **kwargs)
+
 
 class S3File(object):
 
