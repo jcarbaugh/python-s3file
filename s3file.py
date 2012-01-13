@@ -4,7 +4,7 @@ import mimetypes
 import os
 import datetime
 
-__version__ = '0.1'
+__version__ = '1.0'
 
 
 def s3open(*args, **kwargs):
