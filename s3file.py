@@ -71,7 +71,7 @@ class S3File(object):
             now = datetime.datetime.utcnow()
             then = now + datetime.timedelta(self.expiration_days)
             headers["Expires"] = then.strftime("%a, %d %b %Y %H:%M:%S GMT")
-            headers["Cache-Control"] = 'max-age=%d' % (self.expiration_days * 24 * 3600),
+            headers["Cache-Control"] = 'max-age=%d' % (self.expiration_days * 24 * 3600,)
 
         self.key.set_contents_from_file(self.buffer, headers=headers, rewind=True)
 
