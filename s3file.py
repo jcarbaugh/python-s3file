@@ -68,7 +68,7 @@ class S3File(object):
             headers["Expires"] = then.strftime("%a, %d %b %Y %H:%M:%S GMT")
             headers["Cache-Control"] = 'max-age=%d' % (self.expiration_days * 24 * 3600),
 
-        self.key.set_contents_from_file(self.buffer, headers=headers)
+        self.key.set_contents_from_file(self.buffer, headers=headers, rewind=True)
 
     def close(self):
         """ Close the file and write contents to S3.
