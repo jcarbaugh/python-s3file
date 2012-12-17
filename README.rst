@@ -43,4 +43,4 @@ content_type
 	The content_type of the file will be guessed from the URL, but you can explicitly set it by passing a content_type value.
 
 create
-	If False, assume bucket exists and bypass validation. Riskier, but can speed up writing. Defaults to True.
+	**New in version 1.1** If False, assume bucket exists and bypass validation. Riskier, but can speed up writing. Defaults to True.
