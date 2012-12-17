@@ -25,7 +25,7 @@ Basic usage::
 ``with`` statement::
 
 	with s3open(path) as remote_file:
-		remote_file.write("blah blah blah")
+	    remote_file.write("blah blah blah")
 
 S3 authentication key and secret may be passed into the ``s3open`` method or stored in the `boto config file <http://code.google.com/p/boto/wiki/BotoConfig>`_.::
 
@@ -41,3 +41,6 @@ private
 
 content_type
 	The content_type of the file will be guessed from the URL, but you can explicitly set it by passing a content_type value.
+
+create
+	If False, assume bucket exists and bypass validation. Riskier, but can speed up writing. Defaults to True.
