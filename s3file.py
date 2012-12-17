@@ -30,12 +30,12 @@ class S3File(object):
             bucket = bucket[:-17]
 
         self.client = S3Connection(key, secret)
-        
+
         if create:
             self.bucket = self.client.create_bucket(bucket)
         else:
             self.bucket = self.client.get_bucket(bucket, validate=False)
-        
+
         self.key = Key(self.bucket)
         self.key.key = self.url.path.lstrip("/")
 
@@ -78,7 +78,6 @@ class S3File(object):
     def close(self):
         """ Close the file and write contents to S3.
         """
-        value = self.buffer.getvalue()
         self._remote_write()
         self.buffer.close()
 
