@@ -15,7 +15,7 @@ def s3open(*args, **kwargs):
 
 class S3File(object):
 
-    def __init__(self, url, key=None, secret=None, expiration_days=0, private=False, content_type=None):
+    def __init__(self, url, key=None, secret=None, expiration_days=0, private=False, content_type=None, create=True):
         from boto.s3.connection import S3Connection
         from boto.s3.key import Key
 
@@ -30,7 +30,12 @@ class S3File(object):
             bucket = bucket[:-17]
 
         self.client = S3Connection(key, secret)
-        self.bucket = self.client.create_bucket(bucket)
+        
+        if create:
+            self.bucket = self.client.create_bucket(bucket)
+        else:
+            self.bucket = self.client.get_bucket(bucket, validate=False)
+        
         self.key = Key(self.bucket)
         self.key.key = self.url.path.lstrip("/")
 
@@ -66,9 +71,9 @@ class S3File(object):
             now = datetime.datetime.utcnow()
             then = now + datetime.timedelta(self.expiration_days)
             headers["Expires"] = then.strftime("%a, %d %b %Y %H:%M:%S GMT")
-            headers["Cache-Control"] = 'max-age=%d' % (self.expiration_days * 24 * 3600),
+            headers["Cache-Control"] = 'max-age=%d' % (self.expiration_days * 24 * 3600,)
 
-        self.key.set_contents_from_file(self.buffer, headers=headers)
+        self.key.set_contents_from_file(self.buffer, headers=headers, rewind=True)
 
     def close(self):
         """ Close the file and write contents to S3.
