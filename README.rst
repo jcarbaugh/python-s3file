@@ -4,6 +4,11 @@ python-s3file
 
 Read and write files to S3 using a file-like object. Refer to S3 buckets and keys using full URLs.
 
+The underlying mechanism is a lazy read and write using ``cStringIO`` as the file emulation. This is an in memory buffer so is not suitable for large files (larger than your memory).
+
+As S3 only supports reads and writes of the whole key, the S3 key will be read in its entirety and written on ``close``. Starting from release 1.2 this read and write are deferred until required and the key is only read from if the file is read from or written within and only updated if a write operation has been carried out on the buffer contents.
+
+
 More tests and docs are needed.
 
 Requirements
@@ -25,7 +30,7 @@ Basic usage::
 ``with`` statement::
 
 	with s3open(path) as remote_file:
-	    remote_file.write("blah blah blah")
+	    remote_file.read("blah blah blah")
 
 S3 authentication key and secret may be passed into the ``s3open`` method or stored in the `boto config file <http://code.google.com/p/boto/wiki/BotoConfig>`_.::
 
