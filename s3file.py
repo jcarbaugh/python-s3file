@@ -4,7 +4,7 @@ import mimetypes
 import os
 import datetime
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 def s3open(*args, **kwargs):
     """ Convenience method for creating S3File object.
