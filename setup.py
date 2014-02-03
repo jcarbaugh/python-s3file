@@ -13,7 +13,7 @@ setup(
     url="http://github.com/jcarbaugh/python-s3file/",
     long_description=long_description,
     py_modules=["s3file"],
-    install_requires=['boto'],
+    install_requires=['boto==2.24.0'],
     platforms=["any"],
     classifiers=[
         "Development Status :: 4 - Beta",
