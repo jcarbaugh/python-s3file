@@ -1,0 +1,15 @@
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+*.egg
+*.egg-info
+*.py[co]
+
+.cache/
+.git/
+.tox/
+__pycache__/
+
+.env
+pip-log.txt
